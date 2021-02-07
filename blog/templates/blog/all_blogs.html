@@ -1,0 +1,13 @@
+<h1>This is the blogs</h1>
+<h2>Atik has written {{ blogs.count }} blogs{{ blogs.count|pluralize }}</h2>
+{% for blog in blogs %}
+<a href="{% url 'blog:detail' blog.id %}"><h2>{{ blog.title }}</h2></a>
+
+<h3>{{ blog.date|date:'M d Y'|upper }}</h3>
+<p>{{ blog.article|striptags|truncatechars:130 }}</p><!-- striptags is for not applying html tags -->
+{% if blog.url %}
+<br>
+<a href="{{ blog.url}}">Click me</a>
+{% endif %}
+
+{% endfor %}
